@@ -1,5 +1,5 @@
 # NASA: El Poder de los 10
-## Reglas para el desarrollo de código crítico para la seguridad
+## Reglas para el desarrollo de código crítico y seguro
 
 ### Introducción
 Este conjunto de reglas, desarrollado por el **JPL (Jet Propulsion Laboratory)** de la NASA, establece un estándar estricto para asegurar la fiabilidad y seguridad del código en sistemas embebidos críticos.
@@ -74,4 +74,6 @@ Restringir el uso de punteros. Específicamente, no usar más de un nivel de des
 
 <!-- All code must be compiled, from the first day of development, with all compiler warnings enabled at the most pedantic setting available. All code must compile without warnings. All code must also be checked daily with at least one, but preferably more than one, strong static source code analyzer and should pass all analyses with zero warnings. -->
 
-Compilar todo el código, desde el primer día de desarrollo, con todas las advertencias (*warnings*) del compilador activadas en la configuración más estricta (*pedantic*) disponible. Todo el código debe compilar sin advertencias. Asimismo, el código debe ser verificado diariamente con al menos un (pero preferiblemente más de uno) analizador estático de código fuente robusto, y debe superar todos los análisis con cero advertencias.
+Compilar todo el código, desde el primer día de desarrollo, con todas las advertencias (*warnings*) del compilador activadas en la configuración más estricta (*pedantic*) disponible. Todo el código debe compilar sin advertencias. 
+
+Asimismo, el código debe ser verificado diariamente con al menos un (pero preferiblemente más de uno) analizador estático de código fuente robusto, y debe superar todos los análisis con cero advertencias.
