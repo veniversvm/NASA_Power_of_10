@@ -1,0 +1,6 @@
+Fuentes:
+https://en.wikipedia.org/wiki/The_Power_of_10:_Rules_for_Developing_Safety-Critical_Code
+
+https://spinroot.com/gerard/pdf/P10.pdf
+
+https://web.eecs.umich.edu/~imarkov/10rules.pdf
