@@ -1,11 +1,13 @@
-# ![NASA LOGO](./img/NASA_logo.svg) NASA: El Poder de Diez
-## Reglas para el desarrollo de código crítico y seguro [1]
+<div align="center">
+  # ![NASA LOGO](./img/NASA_logo.svg) NASA: El Poder de Diez
+  ## Reglas para el desarrollo de código crítico y seguro [1]
+</div>
 
----
-**Autor:** Gerard J. Holzmann
-**Afiliación:** NASA/JPL Laboratory for Reliable Software
-**Dirección:** Pasadena, CA 91109
----
+<div align="center">
+> Gerard J. Holzmann  
+> NASA/JPL Laboratory for Reliable Software  
+> Pasadena, CA 91109
+</div>
 
 
 <!-- Most serious software development projects use coding guidelines. These guidelines are meant to state what the ground rules are for the software to be written: how it should be structured and which language features should and should not be used. Curiously, there is little consensus on what a good coding standard is. Among the many that have been written there are remarkable few patterns to discern, except that each new document tends to be longer than the one before it. 
