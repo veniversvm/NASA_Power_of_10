@@ -50,7 +50,7 @@ Entonces, por pragmátismo, nuestras reglas de codificación tienen a C como obj
 <!-- Rationale: Simpler control flow translates into stronger capabilities for verification and often results in improved code clarity. The banishment of recursion is perhaps the biggest surprise here. Without recursion, though, we are guaranteed to have an acyclic function call graph, which can be exploited by code analyzers, and can directly help to prove that all executions that should be bounded are in fact bounded. (Note that this rule does not require that all functions have a single point of return – although this often also simplifies control flow. There are enough cases, though, where an early error return is the simpler solution.)  -->
 **RAZÓN**: Un flujo de control simple se traduce en mejores capacidades para la verificación y a menudo resulta en una mayor claridad del código. La prohibición de la recursividad es quizás la mayor sorpresa. Sin recursión, sin embargo, se garantiza un grafo de llamadas a funciones acíclico, lo cual puede ser explotado por los analizadores de código y puede ayudar directamente a probar que todas las ejecuciones que deberían estar acotadas, de hecho lo están. (Notese que esta regla no requiere que todas las funciones tengan un único punto de retorno; sin embargo, a menudo también simplifica el flujo de control. Hay suficientes casos, creemos, donde un retorno de error temprano es la solución más simple).
 
-### II Límites Fijos en Bucles
+### II - Límites Fijos en Bucles
 
 <!-- Give all loops a fixed upper bound. It must be trivially possible for a checking tool to prove statically that the loop cannot exceed a preset upper bound on the number of iterations. If a tool cannot prove the loop bound statically, the rule is considered violated. -->
 **REGLA**: Asignar a todos los bucles un límite superior fijo. Debe ser `trivialmente` posible para una herramienta de comprobación demostrar estáticamente que el bucle no puede exceder un límite preestablecido de iteraciones. Si una herramienta no puede demostrar el límite del bucle de forma estática, se considerará que la regla ha sido vulnerada.
@@ -58,7 +58,7 @@ Entonces, por pragmátismo, nuestras reglas de codificación tienen a C como obj
 <!-- Rationale: The absence of recursion and the presence of loop bounds prevents runaway code. This rule does not, of course, apply to iterations that are meant to be non-terminating (e.g., in a process scheduler). In those special cases, the reverse rule is applied: it should be statically provable that the iteration cannot terminate. One way to support the rule is to add an explicit upper-bound to all loops that have a variable number of iterations (e.g., code that traverses a linked list). When the upperbound is exceeded an assertion failure is triggered, and the function containing the failing iteration returns an error. (See Rule 5 about the use of assertions.)  -->
 **RAZÓN**: La ausencia de recursión y la presencia de límites fijos para los bucles previene el código descontrolado. Por supuesto, esta regla no aplica a iteraciones que por definición no deben terminar nunca (un planificador de procesos/*process scheduler* por ejemplo). En esos casos, la regla opuesta debe aplicarse: debe ser estáticamente comprobable que la iteración no puede terminar. Una manera de promover esta regla es añadir un límite superior explícito a todos los bucles que tienen un número variable de iteraciones (por ejemplo, código que navega a través de una lista enlazada). Cuando el límite superior es excedido, la aserción de falla es activada, y la función que contiene la falla retorna un error. (Ver Regla 5 sobre el uso de las aserciones).
 
-### III Gestión de Memoria Estática
+### III - Gestión de Memoria Estática
 
 <!-- Do not use dynamic memory allocation after initialization. -->
 
@@ -70,7 +70,7 @@ Entonces, por pragmátismo, nuestras reglas de codificación tienen a C como obj
 
 Forzar a todas las aplicaciones a operar dentro de un área de memoria fija y preasignada puede eliminar muchos de estos problemas y facilitar la verificación del uso de la memoria. Nótese que la única manera de reclamar memoria dinámicamente sin recurrir a la asignación de la `memoria dinámica` (*Heap*) es usar la `memoria de la pila` (*Stack*). En ausencia de la recursión (Regla 1), un límite superior en el uso de la `memoria de la pila` (*Stack*) puede ser derivado estáticamente, haciendo por tanto posible demostrar que una aplicación siempre operará dentro de los límites de memoria preasignados.
 
-### IV Claridad y Longitud de Funciones
+### IV - Claridad y Longitud de Funciones
 <!-- No function should be longer than what can be printed on a single sheet of paper in a standard format with one line per statement and one line per declaration. Typically, this means no more than about 60 lines of code per function. -->
 
 **REGLA**: No extender la longitud de ninguna función más allá de lo que se puede imprimir en una sola hoja de papel en un formato estándar, con una línea por sentencia y una línea por declaración. Típicamente, esto significa un máximo de 60 líneas de código por función.
@@ -81,7 +81,7 @@ Forzar a todas las aplicaciones a operar dentro de un área de memoria fija y pr
 
 **RAZÓN**: Cada función debe ser una unidad lógica que sea comprensible y verificable como una unidad. Es mucho más difícil entender una unidad lógica que abarca múltiples pantallas en una computadora o múltiples páginas si es impresa. Funciones excesivamente largas a menudo implican código deficientemente estructurado.
 
-### V Densidad de Aserciones
+### V - Densidad de Aserciones
 
 <!-- The code's assertions density should average to minimally two assertions per function. Assertions must be used to check for anomalous conditions that should never happen in real-life executions. Assertions must be side-effect free and should be defined as Boolean tests. When an assertion fails, an explicit recovery action must be taken such as returning an error condition to the caller of the function that executes the failing assertion. Any assertion for which a static checking tool can prove that it can never fail or never hold violates this rule. -->
 
@@ -129,7 +129,7 @@ Con la aserción definida así:
 ```
 En esta definición, __FILE__ y __LINE__ están predefinidas por el preprocesador de macros para producir el nombre del archivo y el número de línea de la aserción que falla. La sintaxis #e transforma la condición de la aserción e en una cadena de texto (string) que se imprime como parte del mensaje de error. En código destinado a un procesador embebido, por supuesto, no hay lugar para imprimir el mensaje de error en sí; en ese caso, la llamada a tst_debugging se convierte en una operación nula (no-op), y la aserción se transforma en una prueba booleana pura que habilita la recuperación de errores ante un comportamiento anómalo.
 
-### VI Alcance de Datos Mínimo
+### VI - Alcance de Datos Mínimo
 
 <!-- Declare all data objects at the smallest possible level of scope. -->
 
@@ -139,7 +139,7 @@ Declarar todos los objetos de datos (variables) en el nivel de alcance (*scope*)
 
 **RAZÓN**: Esta regla sostiene el principio básico de la ocultación de datos (*data-hiding*). Claramente, si un objeto/dato no está en el alcance (*scope*), su valor no puede ser referenciado o corrompido. De modo similar, si un valor erróneo en un objeto/dato es identificado, cuanto menor sea el número de sentencias donde el valor pudo haber sido asignado, resulta más fácil diagnosticar el problema. Esta regla desalienta la reutilización de variables para múltiples propósitos incompatibles, lo que puede complicar el diagnóstico de fallos.
 
-### VII Validación de Retornos y Parámetros
+### VII - Validación de Retornos y Parámetros
 
 <!-- Each calling function must check the return value of nonvoid functions, and each called function must check the validity of all parameters provided by the caller. -->
 
@@ -153,7 +153,7 @@ En casos más dudosos, debe haber un comentario en el código para presentar una
 
 Las bibliotecas estándar violan esta regla de manera notoria, con consecuencias potencialmente graves. Observe, por ejemplo, lo que pasa si ejecuta accidentalmente `strlen(0)` o `strcat(s1, s2, -1)` con la librería C estándar – no es nada agradable. Al mantener esta regla general, nos aseguramos que tales excepciones deban ser justificadas, con los verificadores mecánicos señalando las violaciones. Comúnmente, será más fácil cumplir con la regla que explicar por qué omitirla puede ser aceptable.
 
-### VIII Uso Restringido del Preprocesador
+### VIII - Uso Restringido del Preprocesador
 <!-- The use of the preprocessor must be limited to the inclusion of header files and simple macros definitions. Token pasting, variable argument lists (ellipses), and recursive macro calls are not allowed. All macros must expand into complete syntactic units. The use of conditional compilation directives must be kept to a minimum. -->
 
 Limitar el uso del preprocesador a la inclusión de archivos de cabecera y a definiciones simples de macros.  No se permite la concatenación de tokens (*token pasting*), listas de argumentos variables (elipses), ni las llamadas a macros recursivas. 
@@ -166,7 +166,7 @@ Todos las macros deben expandirse a unidades sintácticas completas. El uso de d
 
 La justificación para la precaución contra la compilación condicional es igualmente importante. Nótese que con solo diez directivas de compilación condicional, podría haber hasta $2^{10}$ posibles versiones distintas del código final, cada una de las cuales tendría que ser probada (*tested*), causando un enorme aumento en el esfuerzo de prueba requerido.
 
-### IX Restricción de Punteros
+### IX - Restricción de Punteros
 
 <!-- The use of pointers must be restricted. Specifically, no more than one level of dereference should be used. Pointer dereference operations may not be hidden in macro definitions or inside typedef declarations. Function pointers are not permitted. -->
 
@@ -180,7 +180,7 @@ Los punteros a una función, de manera similar, pueden restringir seriamente las
 
 Por ejemplo, si se utilizan punteros a una función, puede volverse imposible para una herramienta comprobar la ausencia de recursión; por tanto, se deben proporcionar garantías alternas para compensar esta pérdida de capacidades analíticas.
 
-### X Compilación y Análisis Estático
+### X - Compilación y Análisis Estático
 
 <!-- All code must be compiled, from the first day of development, with all compiler warnings enabled at the most pedantic setting available. All code must compile without warnings. All code must also be checked daily with at least one, but preferably more than one, strong static source code analyzer and should pass all analyses with zero warnings. -->
 
