@@ -1,10 +1,10 @@
-# ![NASA LOGO](https://en.wikipedia.org/wiki/NASA_insignia#/media/File:NASA_logo.svg) NASA: El Poder de Diez
+# ![NASA LOGO](./img/NASA_logo.svg) NASA: El Poder de Diez
 ## Reglas para el desarrollo de código crítico y seguro [1]
 
 ---
-Gerard J. Holzmann
-NASA/JPL Laboratory for Reliable Software
-Pasadena, CA 91109
+**Autor:** Gerard J. Holzmann
+**Afiliación:** NASA/JPL Laboratory for Reliable Software
+**Dirección:** Pasadena, CA 91109
 ---
 
 
